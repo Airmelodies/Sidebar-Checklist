@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Sidebar Checklist",
+  "version": "3.0.0",
+  "description": "Spreadsheet-like sidebar for Name / Acct # / Sub # / Done with drag reorder, copy all, and Zuora tab launcher.",
+  "permissions": ["storage", "sidePanel", "tabs", "scripting"],
+  "host_permissions": ["https://eu.zuora.com/*"],
+  "action": {
+    "default_title": "Open Sidebar Checklist"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidebar.html"
+  }
+}

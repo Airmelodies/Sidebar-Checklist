@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Sidebar Checklist</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Toast notification -->
+  <div class="toast" id="copyToast">Copied!</div>
+
+  <div class="panel">
+    <div class="header">
+      <div class="title">Sidebar Checklist</div>
+      <div class="stats" id="statsText">0 accounts</div>
+    </div>
+
+    <div class="body active">
+      <div class="label">Paste from Excel into the Name column.</div>
+
+      <div class="table-container">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th class="drag-col"></th>
+              <th class="trash-col"></th>
+              <th class="row-num-col">#</th>
+              <th>Name</th>
+              <th>Acct #</th>
+              <th>Sub #</th>
+              <th class="done-col">Done</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-buttons">
+        <button id="launchBtn" class="btn-launch">Launch Accounts</button>
+        <button id="copyAllBtn" class="btn-copy">Copy All</button>
+        <button id="clearAllBtn" class="btn-clear">Clear</button>
+      </div>
+      <label class="relaunch-row">
+        <input type="checkbox" id="relaunchCheck" />
+        <span>Allow relaunch of accounts</span>
+      </label>
+    </div>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+:root {
+  --surface-panel: #eff0f0;
+  --surface-card: #ffffff;
+  --border-light: #e7eaed;
+  --border-medium: #d7dce1;
+
+  --text-primary: rgba(0,0,0,.9);
+  --text-secondary: rgba(0,0,0,.6);
+  --text-muted: rgba(0,0,0,.4);
+
+  --zuora-header: #223341;
+
+  --action-primary: #1269ba;
+  --action-primary-hover: #689fd3;
+
+  --row-complete-bg: #dbeeff;
+  --row-launched-bg: #e8f5e9;
+  --row-launched-border: #a5d6a7;
+
+  --drag-indicator: var(--action-primary);
+
+  --danger: #dc3545;
+  --danger-hover: #bd2130;
+
+  --success: #28a745;
+  --success-hover: #218838;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f7f8fa;
+  font-size: 13px;
+  height: 100vh;
+}
+
+/* Panel — full height, full width */
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: var(--surface-panel);
+}
+
+/* Header */
+.header {
+  background: var(--zuora-header);
+  color: white;
+  padding: 10px 14px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.stats {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* Body */
+.body {
+  flex: 1;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Table container */
+.table-container {
+  flex: 1;
+  background: var(--surface-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  overflow: auto;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border-light);
+  padding: 4px 6px;
+  text-align: left;
+}
+
+th {
+  background: #f3f4f6;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Column widths */
+.drag-col {
+  width: 24px;
+  text-align: center;
+}
+
+.trash-col {
+  width: 22px;
+  text-align: center;
+  padding: 4px 1px !important;
+}
+
+.row-num-col {
+  width: 28px;
+  text-align: right;
+  color: var(--text-muted);
+}
+
+.done-col {
+  width: 36px;
+  text-align: center;
+}
+
+/* Text inputs inside cells */
+td input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--border-medium);
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+/* Number columns — right-aligned so last digits are visible first */
+.input-number {
+  text-align: right !important;
+}
+
+/* Checkbox inside cells */
+td input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Drag handle ── */
+.btn-drag {
+  background: none;
+  border: none;
+  cursor: grab;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.4;
+  user-select: none;
+  transition: opacity 0.15s;
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
+
+.btn-drag:hover {
+  opacity: 1;
+  color: var(--text-secondary);
+}
+
+.btn-drag:active {
+  cursor: grabbing;
+}
+
+/* ── Drag states ── */
+tr.dragging {
+  opacity: 0.35;
+}
+
+tr.drag-over td {
+  border-top: 2px solid var(--drag-indicator) !important;
+}
+
+/* ── Trash icon button ── */
+.btn-trash {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 1px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.4;
+  transition: opacity 0.15s, color 0.15s;
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
+
+.btn-trash:hover {
+  opacity: 1;
+  color: var(--danger);
+}
+
+/* ── Row states ── */
+tr.completed {
+  background: var(--row-complete-bg);
+}
+
+tr.launched {
+  background: var(--row-launched-bg);
+}
+
+tr.launched td {
+  border-bottom-color: var(--row-launched-border);
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-light);
+  background: var(--surface-card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Footer buttons row */
+.footer-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* Launch button */
+.btn-launch {
+  flex: 1;
+  height: 32px;
+  background: var(--action-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-launch:hover {
+  background: var(--action-primary-hover);
+}
+
+/* Copy All button */
+.btn-copy {
+  height: 32px;
+  padding: 0 10px;
+  background: #546e7a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-copy:hover {
+  background: #6b8494;
+}
+
+/* Clear button */
+.btn-clear {
+  height: 32px;
+  padding: 0 10px;
+  background: var(--zuora-header);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-clear:hover {
+  background: #3a4f63;
+}
+
+/* Relaunch checkbox row */
+.relaunch-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.relaunch-row input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.toast.visible {
+  opacity: 1;
+}
